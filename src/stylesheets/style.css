@@ -63,3 +63,7 @@ div#info {
     backdrop-filter: blur(30px);
     margin-top: 10px;
 }
+
+#game-container canvas {
+    width: 80% !important;
+}
