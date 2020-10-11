@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import Nav from './Nav';
+import axios from 'axios'; 
 import { Row, Col } from 'reactstrap';
-import { FormControl, FormHelperText, Card, Button, IconButton, Input, InputLabel, InputAdornment } from '@material-ui/core'; 
+import { FormControl, FormHelperText, Card, Button, IconButton, Input, InputLabel, InputAdornment,
+         Select, MenuItem } from '@material-ui/core'; 
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Mail from '@material-ui/icons/Mail'; 
-import Person from '@material-ui/icons/Person'
+import Person from '@material-ui/icons/Person';
+import { withRouter } from 'react-router-dom';
 
 class Register extends Component {
   constructor() {
@@ -19,13 +22,16 @@ class Register extends Component {
       confirm: "", 
       showConfirm: false,
       match: false, 
-      response: false
+      response: false,
+      major: "", 
+      error: false, 
+      errMsg: ""
     }
 
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.id] : e.target.value }); 
+    this.setState({ [e.target.name] : e.target.value }); 
   }
 
   handleClickShowPassword = () => {
@@ -87,23 +93,54 @@ class Register extends Component {
   }
 
   registerUser = () => { 
-    console.log("Values: ", this.state.email, this.state.username, this.state.password, this.state.confirm); 
+    console.log("Values: ", this.state.email, this.state.username, this.state.password, this.state.confirm, this.state.major); 
+
+    let data = {
+      email: this.state.email,
+      password: this.state.password,
+      username: this.state.username,
+      major: this.state.major
+    };
+
+    axios.post("https://knightclub-qpzebhklia-ue.a.run.app/api/signup", data)
+    .then(res => {
+      console.log(res.data); 
+
+      this.props.history.push('/game');
+    }).catch(error => {
+      console.log("ERROR : ", error); 
+
+      if (error.response !== undefined) {
+        console.log("Error", error.response.data); 
+        this.setState({ 
+          error: true,
+          errMsg: error.response.data
+        })
+      }
+    })
   }
 
   render() {
     return (
         <div>
           <Nav />
-          <br /><br /><br /><br />
+          <br />
           <Row style={{display: "flex", justifyContent: "center"}}>
           <Col>
             <Card style={{padding: "10px 10px 25px 10px"}} className="registerForm">
+              {
+                this.state.error ? 
+                <p style={{display: "flex", justifyContent: "center", fontSize: "14px", color: "yellow"}}>
+                  {this.state.errMsg}
+                </p> : null 
+              }
               <Row style={{display: "flex", justifyContent: "center"}}>
                 <Col style={{margin: "10px 20px"}}>
                   <FormControl>
                   <InputLabel id="email">Email</InputLabel>
                     <Input
                       id="email"
+                      name="email"
                       type='text'
                       autoComplete="off"
                       value={this.state.email}
@@ -125,6 +162,7 @@ class Register extends Component {
                     <InputLabel id="username">Username</InputLabel>
                     <Input
                       id="username"
+                      name="username"
                       type='text'
                       autoComplete="off"
                       value={this.state.username}
@@ -146,6 +184,7 @@ class Register extends Component {
                     <InputLabel id="password">Password</InputLabel>
                     <Input
                       id="password"
+                      name="password"
                       type={this.state.showPassword ? 'text' : 'password'}
                       autoComplete="off"
                       value={this.state.password}
@@ -161,15 +200,17 @@ class Register extends Component {
                         </InputAdornment>
                       }
                     />
+                    <p style={{fontSize: "10px", color: "yellow", margin: "0px"}}>*Must be at least 6 characters long</p>
                   </FormControl>
                 </Col>
               </Row>
               <Row style={{display: "flex", justifyContent: "center"}}>
-                <Col style={{margin: "10px 20px 20px 20px"}}>
+                <Col style={{margin: "0px 20px"}}>
                   <FormControl error={this.state.response ? true : false}>
                     <InputLabel id="confirm">Confirm Password</InputLabel>
                     <Input
                       id="confirm"
+                      name="confirm"
                       type={this.state.showConfirm ? 'text' : 'password'}
                       autoComplete="off"
                       value={this.state.confirm}
@@ -192,6 +233,25 @@ class Register extends Component {
                 </Col>
               </Row>
               <Row style={{display: "flex", justifyContent: "center"}}>
+                <Col style={{margin: "10px 20px 20px 20px"}}>
+                  <FormControl>
+                  <InputLabel id="major">Major</InputLabel>
+                  <Select
+                    id="major"
+                    name="major"
+                    value={this.state.major}
+                    onChange={e => this.handleChange(e)}
+                    style={{width:"100%"}}
+                  >
+                    <MenuItem value={"art"}>Art</MenuItem>
+                    <MenuItem value={"business"}>Business</MenuItem>
+                    <MenuItem value={"engineering"}>Engineering</MenuItem>
+                    <MenuItem value={"science"}>Science</MenuItem>
+                  </Select>
+                  </FormControl>
+                </Col>
+              </Row>
+              <Row style={{display: "flex", justifyContent: "center"}}>
                     <Button 
                       variant="contained" 
                       style={{backgroundColor: "purple", color: "white", width: "31vh"}}
@@ -208,4 +268,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);

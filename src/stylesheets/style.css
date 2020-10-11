@@ -5,11 +5,11 @@ body {
         );
 
     width: 100%;
-    height: 96vh;
+    height: 100vh;
 }
 
 .container {
-    margin: 30px 0px 20px 0px;
+    margin: 20px 0px 20px 0px;
 }
 
 nav#nav-menu-container {
@@ -36,8 +36,12 @@ ul.nav-menu li a:hover {
     color: #551b8b; 
 }
 
-label#email, label#username, label#password, label#confirm {
+label#email, label#username, label#password, label#confirm, label#major {
     color: #551b8b; 
+}
+
+div#major {
+    width: 200px; 
 }
 
 .MuiPaper-root.MuiCard-root.registerForm.MuiPaper-elevation1.MuiPaper-rounded {
@@ -58,8 +62,4 @@ div#info {
     overflow: hidden;
     backdrop-filter: blur(30px);
     margin-top: 10px;
-}
-
-.homeContainer {
-    background-image: url('../images/HomeBg.png');
 }

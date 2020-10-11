@@ -14,7 +14,7 @@ class App extends Component {
       <Router>  
         <div>
           <Switch>
-            <Route exact path="/home" component={Home}/>
+            <Route exact path="/" component={Home}/>
             <Route path="/register" render={(props)=><Register {...props} serviceIP={flaskIP}/>}/>
             <Route path="/game" render={(props)=><Game {...props} serviceIP={flaskIP}/>}/>
             <Route path="/about" render={(props)=><About {...props} serviceIP={flaskIP}/>}/>

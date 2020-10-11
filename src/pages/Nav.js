@@ -8,9 +8,10 @@ class Nav extends Component {
             <div className="container">
                 <nav id="nav-menu-container">
                     <ul className="nav-menu">
-                        <li style={{position: "relative", right: "400px"}}>
-                            <Link to='/home'>
-                                    Home 
+                        <li style={{position: "relative", right: "370px"}}>
+                            <Link to='/'>
+                                <img src={require('../images/KnightClubLogo.png')} 
+                                style={{width: "150px", height: "50px", position: "relative", top: "10px"}}/>
                             </Link>
                         </li>
                         <li>

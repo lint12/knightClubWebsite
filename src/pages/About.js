@@ -25,10 +25,19 @@ class About extends Component {
                 to walk around UCF and interact with others. We hope you enjoy this game with your friends and family. 
                 Most importantly, stay safe!  
               </p>
+              <p style={{margin: "0px 50px"}}>
+                <img src={require('../images/duck.png')} style={{width: "35px", height: "35px"}}/>
+                <a style={{position: "relative", bottom: "10px", paddingLeft: "10px"}}>
+                  We would also like to give a huge shout out to{' '}
+                  <a href="https://www.linkedin.com/in/kaarthik-alagappan/">Kaarthik Alagappan</a>{' '}
+                  for helping us along the way.
+                </a>
+              </p>
               <p style={{margin: "0px", display: "flex", justifyContent: "flex-end", paddingRight: "50px"}}>
+                <a style={{position: "relative", top: "15px"}}>Check out our project's repo: </a>
                 <IconButton 
                   size="small" 
-                  style={{backgroundColor: "black", margin: "10px", width: "35px", height: "35px"}} 
+                  style={{backgroundColor: "black", margin: "5px", width: "35px", height: "35px"}} 
                   href="https://github.com/JonathanNJules/KnightClub"
                 >
                   <img src={require('../images/github.png')} style={{width: "35px", height: "35px"}}/>

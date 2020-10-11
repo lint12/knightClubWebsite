@@ -41,10 +41,10 @@ export default function Home() {
 
       <img 
         src={require('../images/KnightClubText.png')}
-        style={{position: "absolute", left: "280px", top: "150px", width: "60%"}}
+        style={{position: "absolute", left: "300px", top: "150px", width: "60%"}}
       />
 
-      <Button type="button" onClick={handleOpen} style={{position: "absolute", left: "600px", top: "330px", 
+      <Button type="button" onClick={handleOpen} style={{position: "absolute", left: "630px", top: "330px", 
             backgroundColor: "#551b8b", color: "white", zIndex: "1", width: "200px", fontSize: "30px", fontWeight: "bold"}}>
         Join Us
       </Button>
@@ -73,7 +73,7 @@ export default function Home() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title" style={{display: "flex", justifyContent: "center"}}>
+            <h2 id="transition-modal-title" style={{display: "flex", justifyContent: "center", textDecoration: "underline"}}>
               Get Setup to Play
             </h2>
             <Grid container spacing={2} style={{marginTop: "5px"}}>
