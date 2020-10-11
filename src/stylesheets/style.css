@@ -59,3 +59,7 @@ div#info {
     backdrop-filter: blur(30px);
     margin-top: 10px;
 }
+
+.homeContainer {
+    background-image: url('../images/HomeBg.png');
+}

@@ -15,7 +15,7 @@ class Game extends Component {
   }
 
   render() {
-
+    console.log("Context: ", this.unityContext); 
     return (
       <div>
         <Nav />
