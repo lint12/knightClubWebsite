@@ -1,31 +1,27 @@
 import React, { Component } from 'react';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
+import {Link} from 'react-router-dom';
 
 class Nav extends Component {
   render() {
     return (
         <div>
             <div className="container">
-                <div>
-                    <Link to='/home'>
-                        <img 
-                            alt="Knight Club Icon" title="Home"/>
-                    </Link>
-                </div>
                 <nav id="nav-menu-container">
                     <ul className="nav-menu">
-                    <Grid>
+                        <li style={{position: "relative", right: "400px"}}>
+                            <Link to='/home'>
+                                    Home 
+                            </Link>
+                        </li>
                         <li>
-                            <img src={require('../images/sign-up.png')} style={{width: "45px", height: "45px"}}/>
-                            
                             <Link to='/register'>
+                                <img src={require('../images/sign-up.png')} style={{width: "40px", height: "40px"}}/>
                                 <a>Register</a>
                             </Link>
                         </li>
                         <li>
                             <Link to='/game'>
-                                <img src={require('../images/game-controller.png')} style={{width: "45px", height: "45px"}}/>
+                                <img src={require('../images/game-controller.png')} style={{width: "40px", height: "40px"}}/>
                                 <a>Play Now</a>
                             </Link>
                         </li>
@@ -35,7 +31,6 @@ class Nav extends Component {
                                 <a>About</a>
                             </Link>
                         </li>
-                        </Grid>
                     </ul>
                 </nav>
             </div>

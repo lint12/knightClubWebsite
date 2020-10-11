@@ -19,7 +19,9 @@ class Game extends Component {
     return (
       <div>
         <Nav />
-        <Unity unityContext={this.unityContext} />
+        <div style={{display: "flex", justifyContent: "center"}}>
+          <Unity unityContext={this.unityContext} />
+        </div>
       </div>
     );
   }
