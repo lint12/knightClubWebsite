@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Nav from './Nav';
 import Unity, { UnityContext } from "react-unity-webgl";
 import Alert from '@material-ui/lab/Alert';
+import Button from '@material-ui/core/Button';
 import { Row } from 'reactstrap'; 
 
 class Game extends Component {
@@ -9,7 +10,8 @@ class Game extends Component {
     super();
 
     this.state = {
-      alert: false
+      alert: false,
+      showButton: false
     }
 
     this.unityContext = new UnityContext({
@@ -18,6 +20,7 @@ class Game extends Component {
       frameworkUrl: "Builds/Build/Builds.framework.js",
       codeUrl: "Builds/Build/Builds.wasm"
     });
+
   }
 
   componentDidMount() {
@@ -25,10 +28,15 @@ class Game extends Component {
       window.setTimeout(()=>{
         this.setState({ 
           alert: false, 
+          showButton: true
         })
       },1000)
     }); 
   }
+
+  onFullScreen = () => {
+    this.unityContext.setFullscreen(true); 
+  };
 
   render() {
     console.log("Context: ", this.unityContext); 
@@ -44,8 +52,17 @@ class Game extends Component {
           : null
         } 
         </Row>
+        <Row style={{display: "flex", justifyContent: "flex-end", margin: "0 145px 0 145px"}}>
+          <Button 
+            id="fullScreenButton" 
+            onClick={this.onFullScreen}
+            style={{display: this.state.showButton ? null : "none"}}
+          >
+            Full Screen
+          </Button>
+        </Row>
         <div style={{display: "flex", justifyContent: "center"}} id="game-container">
-          <Unity unityContext={this.unityContext} />
+          <Unity unityContext={this.unityContext}/>
         </div>
       </div>
     );
