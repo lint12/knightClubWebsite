@@ -15,10 +15,10 @@ class Game extends Component {
     }
 
     this.unityContext = new UnityContext({
-      loaderUrl: "Builds/Build/Builds.loader.js",
-      dataUrl: "Builds/Build/Builds.data",
-      frameworkUrl: "Builds/Build/Builds.framework.js",
-      codeUrl: "Builds/Build/Builds.wasm"
+      loaderUrl: "Builds/Build/Dev.loader.js",
+      dataUrl: "Builds/Build/Dev.data",
+      frameworkUrl: "Builds/Build/Dev.framework.js",
+      codeUrl: "Builds/Build/Dev.wasm"
     });
 
   }
